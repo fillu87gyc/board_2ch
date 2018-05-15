@@ -1,0 +1,10 @@
+<%= link_to "#{@board.title}に戻る",action: :show,:id => @board.id %>
+<hr>
+<h1> <%= @board.title %>を編集する </h1>
+<%= form_tag controller:"boards", action:"update" do %>
+  title: <%= text_field_tag :title ,@board.title %> 
+  <br>
+  editor: <%= text_field_tag :editor ,@board.editor %> 
+  <%= submit_tag("submit") %>
+<% end %>
+<hr>

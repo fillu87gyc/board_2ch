@@ -1,0 +1,6 @@
+<%= link_to '一覧に戻る','/boards/' %>
+<hr>
+<h1> <%= @board.title %> </h1>
+<%= link_to "#{@board.title}の詳細を編集する" ,action: :edit,:id => @board.id %><br>
+<%= link_to "#{@board.title}を削除する" ,"/boards/#{@board.id}",data: { confirm: "#{@board.title}を削除してもいいですか"} ,method: :delete%>  
+<hr>

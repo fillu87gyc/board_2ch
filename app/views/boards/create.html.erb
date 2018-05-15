@@ -1,0 +1,8 @@
+<%= link_to "スレッド一覧に戻る" ,"/boards" %>
+<hr>
+<h1> boards create </h1>
+<%= form_tag controller:"boards", action:"create" do %>
+  タイトル: <%= text_field_tag :title %><br>
+  制作者名: <%= text_field_tag :editor %><br>
+  <%= submit_tag("submit") %>
+<% end %>

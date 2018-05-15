@@ -1,0 +1,9 @@
+ <h1>2chクローン</h1>
+ <%= link_to "スレッド新規作成", "/boards/create" %>
+ <hr>
+ <% @boards.each do |board| %>
+    <div>
+      <%= link_to  board.title  ,action: :show,:id => board.id  %>
+      [<%= board.editor %>]<br><br>
+    </div>
+ <% end %>
