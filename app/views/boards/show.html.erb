@@ -1,6 +1,14 @@
-<%= link_to '一覧に戻る','/boards/' %>
-<hr>
-<h1> <%= @board.title %> </h1>
-<%= link_to "#{@board.title}の詳細を編集する" ,action: :edit,:id => @board.id %><br>
-<%= link_to "#{@board.title}を削除する" ,"/boards/#{@board.id}",data: { confirm: "#{@board.title}を削除してもいいですか"} ,method: :delete%>  
-<hr>
+<div class="wrapper wrapper__bg">
+  <div class="container">
+    <%= link_to "スレッド一覧に戻る", boards_path %>
+    <hr>
+      <div class="board">
+        <h1 class="board--name">
+          <%= @board.title %>
+        </h1>
+      </div>
+    <%= link_to "タイトルを編集する", edit_board_path(@board) %>
+    <%= link_to "削除する", board_path(@board), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+    <hr>
+  </div>
+</div>

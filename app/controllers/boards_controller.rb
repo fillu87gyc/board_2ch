@@ -3,13 +3,15 @@ class BoardsController < ApplicationController
     @boards = Board.all
   end
   def new
-    
+    @board = Board.new
   end
+
   def create
-    if request.post? then
-      @board = Board.new(boards_params)
-      @board.save
-      redirect_to '/boards/index'
+    @board = Board.new(boards_params)
+    if @board.save
+      redirect_to board_url(@board)
+    else 
+      render action: :new 
     end
   end
 
@@ -23,18 +25,21 @@ class BoardsController < ApplicationController
 
   def update
     @board = Board.find params[:id]
-    @board.update(boards_params)
-    redirect_to "/boards/#{@board.id}"
+    if @board.update_attributes(boards_params)
+      redirect_to board_url(@board)
+    else
+      render 'edit' 
+    end
   end
 
   def destroy
     @board = Board.find params[:id]
     @board.destroy
-    redirect_to '/' 
+    redirect_to boards_url
   end
   
   private
   def boards_params
-    params.permit(:title,:editor)
+    params.require(:board).permit(:title,:editor)
   end
 end
