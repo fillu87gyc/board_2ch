@@ -3,10 +3,13 @@
     <h1>2chクローン</h1>
     <%= link_to "スレッド新規作成", new_board_path %>
     <hr>
-      <div class="panel">
+    <div class="panel">
+      <div>
         <% @boards.each do |board| %>
-          <%= link_to board.title, board_path(board) %> </br>
+          <%= link_to board.title, board_path(board) %>
+          <div class="editor"><%= board.editor %><br></div>
         <% end %>
-     </div>
-   </div>
- </div>
+      </div>
+    </div>
+  </div>
+</div>

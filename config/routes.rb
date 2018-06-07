@@ -16,5 +16,8 @@ Rails.application.routes.draw do
   # get 'boards/:id/edit' => 'boards#edit'
   # post 'boards/:id/edit' => 'boards#update'
   resources :boards
+  resources :boards do
+    resources :comments,only: [:create,:destroy]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
