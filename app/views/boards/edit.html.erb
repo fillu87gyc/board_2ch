@@ -1,16 +1,27 @@
-<%= link_to "#{@board.title}に戻る",board_path(@board) %>
-<hr>
-<% if @board.errors.any? %>
-  <ul></ul>
-    <% @board.errors.full_messages.each do |err| %>
-      <li><%= err %></li>
-    <% end %>
-  </ul>
-<% end %>
-<h1> <%= @board.title %>を編集する </h1>
-<%= form_for @board do |f|%>
-  title: <%= f.text_field :title%><br>
-  editor: <%= f.text_field :editor %> <br>
-  <%= f.submit %>
-<% end %>
-<hr>
+ <div class="wrapper wrapper__bg">
+ 	<div class="container">
+ 	<%= link_to @board.title, board_path(@board) %>
+ 	<hr>
+ 	<h1>Boards#edit</h1>
+ 	<% if @board.errors.any? %>
+ 	<%= @board.errors.full_messages %>
+ 	<% end %>
+ 	<div class="panel form">
+ 	<%= form_for @board do |f| %>
+ 	<div>
+ 	<div class="form--label">タイトル: </div>
+ 	<div class="form--input">
+ 	<%= f.text_field :title %>
+ 	</div>
+ 	</div>
+ 	<div>
+ 	<div class="form--label">作成者名:</div>
+ 	<div class="form--input">
+ 	<%= f.text_field :editor %>
+ 	</div>
+ 	</div>
+ 	<%= f.submit %>
+ 	<% end %>
+ 	</div>
+ 	</div>
+ </div>

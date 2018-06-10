@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # post 'boards/create' => 'boards#create'
   # get 'boards/create'
 
@@ -15,9 +14,10 @@ Rails.application.routes.draw do
   # get 'boards/:id' =>'boards#show'
   # get 'boards/:id/edit' => 'boards#edit'
   # post 'boards/:id/edit' => 'boards#update'
+  root to: 'boards#index'
   resources :boards
   resources :boards do
-    resources :comments,only: [:create,:destroy]
+    resources :comments, only: %i[create destroy]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

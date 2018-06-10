@@ -2,6 +2,7 @@ class BoardsController < ApplicationController
   def index
     @boards = Board.all
   end
+
   def new
     @board = Board.new
   end
@@ -10,13 +11,13 @@ class BoardsController < ApplicationController
     @board = Board.new(boards_params)
     if @board.save
       redirect_to board_url(@board)
-    else 
-      render action: :new 
+    else
+      render action: :new
     end
   end
 
   def show
-    @board = Board.find params[:id]
+    @board = Board.includes(:comments).find(params[:id])
     @comment = Comment.new
   end
 
@@ -29,7 +30,7 @@ class BoardsController < ApplicationController
     if @board.update_attributes(boards_params)
       redirect_to board_url(@board)
     else
-      render 'edit' 
+      render 'edit'
     end
   end
 
@@ -38,9 +39,10 @@ class BoardsController < ApplicationController
     @board.destroy
     redirect_to boards_url
   end
-  
+
   private
+
   def boards_params
-    params.require(:board).permit(:title,:editor)
+    params.require(:board).permit(:title, :editor)
   end
 end
